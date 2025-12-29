@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title>SoundScape Bakery</title>
+    </head>
+    <body>
+        <header>
+            <div class="nav-container">
+            <img id="logo" src="images/logo.png" alt="logo">
+            <nav>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="forest.html">FOREST</a></li>
+                    <li><a href="cafe.html">CAFE</a></li>
+                    <li><a href="library.html">LIBRARY</a></li>
+                    <li><a href="underwater.html">UNDERWATER</a></li>
+
+                </ul>
+            </nav>
+        </div>
+            
+        </header>
+    
+                <h1>Welcome to underwater.</h1>
+<!--buttons-->
+<audio id="underwaterbass_noise" src="audio/underwater/underwaterbass_noise.mp3" autostart="false"></audio>
+    <button id="underwaterbass" onclick="clickUnderwaterbass();">
+        <img src="images/underwater/underwaterbass.png" alt="">
+    </button>
+
+    <audio id="underwaterbubbly_noise" src="audio/underwater/underwaterbubbly_noise.mp3" autostart="false"></audio>
+    <button id="underwaterbubbly" onclick="clickUnderwaterbubbly();">
+        <img src="images/underwater/underwaterbubbly.png" alt="">
+    </button>
+    
+    
+<!--timer-->  
+     <div class="timebox">
+        <h1 id="timer-title">Pomodoro Timer</h1>
+        <div class="time-container">
+            <div class="time">
+                <h2 id="minutes">25</h2>
+                <p>Minutes</p>
+            </div>
+            <h2 id="colon">:</h2>
+            <div class="time">
+                <h2 id="seconds">00</h2>
+                <p>Seconds</p>
+            </div>
+        </div>
+        <div class="timer-controls">
+            <button id="start">Start</button>
+            <button id="pause">Pause</button>
+            <button id="reset">Reset</button>
+        </div>
+    </div>
+
+   <div class="task-list">
+  <h2>My Tasks</h2>
+  <input type="text" id="taskInput" placeholder="Add a new task..." />
+  <div id="tasksContainer"></div>
+</div>
+
+    <script src="timer.js"></script>
+            
+    </body>
+
+    <style>
+
+/*buttons*/
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(13, 84, 108, 0.9);
+    border-radius: 30px;
+    padding: 10px 10px;
+    box-shadow: 0 2px 10px #39303d94;
+    }
+
+    #logo {
+        height: 40px;
+        width: 40px;
+    }
+
+    nav ul {
+        list-style: none;
+        display: flex;
+        margin: 0 200px;
+        padding: 0;
+        
+
+    }
+    nav li a {
+        margin: 0 20px;
+        font-weight: bold;
+        color: white;
+        text-decoration: none;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+    nav a:hover {
+        color: #82aba0; 
+    }
+
+    h1 {
+        font-size: 54px;
+    }
+    h2 {
+        font-size: 24px;
+    }
+    h3 {
+        font-size: 18px;
+    }
+
+    html {
+        font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+#underwaterbubbly {
+        position: absolute;
+        right: 650px;
+        top: 300px;
+        padding: 0;
+        background-color: transparent;
+        border: none;
+    }
+    #underwaterbubbly img {
+        width:150px;
+        height: auto;
+    }
+    #underwaterbubbly img:hover{
+        cursor: pointer;
+    }
+
+    #underwaterbass {
+        position: absolute;
+        right: 350px;
+        top: 200px;
+        padding: 0;
+        background-color: transparent;
+        border: none;
+    }
+    #underwaterbass img {
+        width: 220px;
+        height: auto;
+    }
+    #underwaterbass img:hover{
+        cursor: pointer;
+    }
+
+
+/*general*/
+    body {
+        background-image: url(images/underwater/underwater_background.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    h1 {
+        color: white;
+        justify-self: center;
+        }
+.task-list {
+  background-color: rgba(20, 131, 168, 0.9);
+  padding: 20px;
+  border-radius: 16px;
+  width: 300px;
+  color: black;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.task-list h2 {
+  margin-top: 0;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.task-list input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+#tasksContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#tasksContainer div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #f9f9f9;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
+#tasksContainer input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+}
+
+#tasksContainer span {
+  flex-grow: 1;
+  font-size: 16px;
+}
+
+#tasksContainer span.completed {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.delete-btn {
+  background-color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 3px 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.timebox {
+position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 350px;
+  padding: 15px;
+  background: rgba(13, 84, 108, 0.9);
+   border-radius: 20px;
+   box-shadow: 0 2px 10px #39303d94;
+  z-index: 100;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  text-align: center;
+}
+
+#timer-title {
+    font-size: 24px;
+}
+
+.time-container {
+  display: flex;
+    justify-content: center;
+  align-items: baseline;
+  gap: 15px;
+   margin-bottom: 15px;
+}
+
+#colon {
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 60pt;
+}
+
+#minutes, #seconds {
+  font-size: 100px;
+    font-weight: bold;
+  color: #ffffff;
+  margin: 0 2px;
+}
+
+.time-container p {
+  font-size: 12px;
+  color: #ffffff;
+  margin: 0;
+}
+
+.timer-controls {
+  
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+#start, #pause, #reset {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#start, #pause, #reset {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background:rgba(78, 182, 216, 0.9);
+    color: rgba(13, 84, 108, 0.9);
+    font-weight: bolder;
+}
+
+
+#start:hover, #pause:hover, #reset:hover {
+    background: white;
+}
+
+.mode-indicator {
+  text-align: center;
+    font-size: 14px;
+  margin-bottom: 10px;
+    padding: 4px;
+  border-radius: 4px;
+}
+
+.focus-mode .mode-indicator {
+  background: #e8f5e9;
+  color: #aa73ca;
+}
+
+ .break-mode .mode-indicator {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+.focus-mode {
+  border-top: 3px solid #4CAF50;
+}
+
+.break-mode {
+  border-top: 3px solid #2196F3;
+}
+
+ #start, #pause, #reset {
+  text-transform: lowercase;  
+  
+}
+
+    </style>
+
+    <script>
+    /*sounds*/
+    function clickUnderwaterbubbly() {
+        var sound = document.getElementById('underwaterbubbly_noise');
+        sound.play();
+    }
+    function clickUndewaterbass() {
+        var sound = document.getElementById('underwaterbass_noise');
+        sound.play();
+    }
+
+    const input = document.getElementById('taskInput');
+const list = document.getElementById('tasksContainer');
+
+input.addEventListener('keypress', function (e) {
+  if (e.key === 'Enter' && input.value.trim() !== '') {
+    const taskDiv = document.createElement('div');
+
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+
+    const taskText = document.createElement('span');
+    taskText.textContent = input.value;
+
+    const btn = document.createElement('button');
+    btn.textContent = 'x';
+    btn.className = 'delete-btn';
+
+    btn.addEventListener('click', () => taskDiv.remove());
+
+    checkbox.addEventListener('change', () => {
+      taskText.classList.toggle('completed', checkbox.checked);
+    });
+
+    taskDiv.appendChild(checkbox);
+    taskDiv.appendChild(taskText);
+    taskDiv.appendChild(btn);
+    list.appendChild(taskDiv);
+
+    input.value = '';
+  }
+});
+
+    </script>
+
+
+</html>

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title>SoundScape Bakery</title>
+    </head>
+   <body background="images/forest_background.jpeg">
+    <header>
+        <div class="nav-container">
+            <img id="logo" src="images/logo.png" alt="logo">
+            <nav>
+                 <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="forest.html">FOREST</a></li>
+                    <li><a href="cafe.html">CAFE</a></li>
+                    <li><a href="library.html">LIBRARY</a></li>
+                    <li><a href="underwater.html">UNDERWATER</a></li>
+
+                </ul>
+        </div>
+    </header>
+
+    <h1>Welcome to the forest.</h1>
+    
+<!--buttons-->
+    <audio id="leaves_noise" src="audio/forest/leaves_noise.mp3" autostart="false"></audio>
+    <button id="leaves" onclick="clickLeaves();">
+        <img src="images/forest/leaves.png" alt="">
+    </button>
+
+    <audio id="frog_noise" src="audio/forest/frog_noise.mp3" autostart="false"></audio>
+    <button id="frog" onclick="clickFrog();">
+        <img src="images/forest/frog.png" alt="">
+    </button>
+
+    <audio id="hummingbird_noise" src="audio/forest/hummingbird_noise.mp3" autostart="false"></audio>
+    <button id="hummingbird" onclick="clickHummingbird();">
+        <img src="images/forest/hummingbird.png" alt="">
+    </button>
+
+<!--timer-->
+    <div class="timebox">
+        <h1 id="timer-title">Pomodoro Timer</h1>
+        <div class="time-container">
+            <div class="time">
+                <h2 id="minutes">25</h2>
+                <p>Minutes</p>
+            </div>
+            <h2 id="colon">:</h2>
+            <div class="time">
+                <h2 id="seconds">00</h2>
+                <p>Seconds</p>
+            </div>
+        </div>
+        <div class="timer-controls">
+            <button id="start">Start</button>
+            <button id="pause">Pause</button>
+            <button id="reset">Reset</button>
+        </div>
+    </div>
+
+    <script src="timer.js"></script>
+
+<div class="task-list">
+  <h2>My Tasks</h2>
+  <input type="text" id="taskInput" placeholder="Add a new task..." />
+  <div id="tasksContainer"></div>
+</div>
+
+
+</body>
+
+<style>
+
+    .nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1e4b3fc9;
+    border-radius: 30px;
+    padding: 10px 10px;
+    box-shadow: 0 2px 10px #39303d94;
+    }
+
+    #logo {
+        height: 40px;
+        width: 40px;
+    }
+
+    nav ul {
+        list-style: none;
+        display: flex;
+        margin: 0 200px;
+        padding: 0;
+        
+
+    }
+    nav li a {
+        margin: 0 20px;
+        font-weight: bold;
+        color: white;
+        text-decoration: none;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+    nav a:hover {
+        color: #82aba0; 
+    }
+
+    h1 {
+        font-size: 54px;
+    }
+    h2 {
+        font-size: 24px;
+    }
+    h3 {
+        font-size: 18px;
+    }
+
+    html {
+        font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+    
+
+/*leaves*/
+    #leaves {
+        position: absolute;
+        right: 0px;
+        top: 70px;
+        padding: 0;
+        background-color: transparent;
+        border: none;
+    }
+    #leaves img {
+        width:250px;
+        height: auto;
+    }
+    #leaves img:hover {
+        cursor: pointer;
+        content: url(images/forest/leaves_hover.png);
+    }
+    
+/*frog*/
+    #frog {
+        position: absolute;
+        right: 1230px;
+        top: 580px;
+        padding: 0;
+        background-color: transparent;
+        border: none;
+    }
+    #frog img {
+        width:160px;
+        height: auto;
+    }
+    #frog img:hover {
+        cursor: pointer;
+        content: url(images/forest/frog_hover.png);
+    }
+
+
+/*hummingbird*/
+    #hummingbird {
+        position: absolute;
+        right: 800px;
+        top: 250px;
+        padding: 0;
+        background-color: transparent;
+        border: none;
+    }
+    #hummingbird img {
+        width:250px;
+        height: auto;
+    }
+    #hummingbird img:hover {
+        cursor: pointer;
+        content: url(images/forest/hummingbird_hover.png);
+    }
+    
+    /*general*/
+    body {
+        background-image: url(images/forest/forest_background.jpg);
+        background-size:cover;
+        background-repeat: no-repeat;
+    }
+
+    h1 {
+        color: white;
+        justify-self: center;
+    }
+
+    .task-list {
+  background-color: rgba(111, 170, 111, 0.9);
+  padding: 20px;
+  border-radius: 16px;
+  width: 300px;
+  color: black;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.task-list h2 {
+  margin-top: 0;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.task-list input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+#tasksContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#tasksContainer div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #f9f9f9;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
+#tasksContainer input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+}
+
+#tasksContainer span {
+  flex-grow: 1;
+  font-size: 16px;
+}
+
+#tasksContainer span.completed {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.delete-btn {
+  background-color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 3px 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.timebox {
+position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 350px;
+  padding: 15px;
+  background: #378671c9;
+   border-radius: 20px;
+   box-shadow: 0 2px 10px #39303d94;
+  z-index: 100;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  text-align: center;
+}
+
+#timer-title {
+    font-size: 24px;
+}
+
+.time-container {
+  display: flex;
+    justify-content: center;
+  align-items: baseline;
+  gap: 15px;
+   margin-bottom: 15px;
+}
+
+#colon {
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 60pt;
+}
+
+#minutes, #seconds {
+  font-size: 100px;
+    font-weight: bold;
+  color: #ffffff;
+  margin: 0 2px;
+}
+
+.time-container p {
+  font-size: 12px;
+  color: #ffffff;
+  margin: 0;
+}
+
+.timer-controls {
+  
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+#start, #pause, #reset {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#start, #pause, #reset {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background: #a4c07f;
+    color: #1e4b3f;
+    font-weight: bolder;
+}
+
+
+#start:hover, #pause:hover, #reset:hover {
+    background: white;
+}
+
+.mode-indicator {
+  text-align: center;
+    font-size: 14px;
+  margin-bottom: 10px;
+    padding: 4px;
+  border-radius: 4px;
+}
+
+.focus-mode .mode-indicator {
+  background: #e8f5e9;
+  color: #aa73ca;
+}
+
+ .break-mode .mode-indicator {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+.focus-mode {
+  border-top: 3px solid #4CAF50;
+}
+
+.break-mode {
+  border-top: 3px solid #2196F3;
+}
+
+ #start, #pause, #reset {
+  text-transform: lowercase;  
+  
+}
+</style>
+
+
+<script>
+    /*sounds*/
+    function clickLeaves() {
+        var sound = document.getElementById('leaves_noise');
+        sound.play();
+    }
+    function clickFrog() {
+        var sound = document.getElementById('frog_noise');
+        sound.play();
+    }
+    function clickHummingbird() {
+        var sound = document.getElementById('hummingbird_noise');
+        sound.play();
+    }
+
+    const input = document.getElementById('taskInput');
+const list = document.getElementById('tasksContainer');
+
+input.addEventListener('keypress', function (e) {
+  if (e.key === 'Enter' && input.value.trim() !== '') {
+    const taskDiv = document.createElement('div');
+
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+
+    const taskText = document.createElement('span');
+    taskText.textContent = input.value;
+
+    const btn = document.createElement('button');
+    btn.textContent = 'x';
+    btn.className = 'delete-btn';
+
+    btn.addEventListener('click', () => taskDiv.remove());
+
+    checkbox.addEventListener('change', () => {
+      taskText.classList.toggle('completed', checkbox.checked);
+    });
+
+    taskDiv.appendChild(checkbox);
+    taskDiv.appendChild(taskText);
+    taskDiv.appendChild(btn);
+    list.appendChild(taskDiv);
+
+    input.value = '';
+  }
+});
+
+</script>
+
+</html>
